@@ -1,0 +1,64 @@
+<ApplicationServer Name="demoserver" Type="SharedService">
+    <Property Name="SMAuthentication">
+        <Authentication>
+            <PassportAccessToken Enabled="True">
+                <DefaultPassportProvider>https://auth.ischool.com.tw/services/getPassport.php?access_token={AccessToken}&amp;token_type=bearer</DefaultPassportProvider>
+                <PassportProvider Name="Debug">https://authbug.ischool.com.tw/services/getPassport.php?access_token={AccessToken}&amp;token_type=bearer</PassportProvider>
+            </PassportAccessToken>
+            <Passport Enabled="True">
+                <Issuer Name="greening.shared.user">
+                    <CertificateProvider Type="HttpGet">http://web.ischool.com.tw/service/shared/info/Public.GetPublicKey</CertificateProvider>
+                </Issuer>
+                <Issuer Name="test.greening.shared.user">
+                    <CertificateProvider Type="HttpGet">https://authbug.ischool.com.tw:8443/dsa/greening/info/Public.GetPublicKey</CertificateProvider>
+                </Issuer>
+                <AccountLinking Type="mapping">
+                    <TableName>login</TableName>
+                    <UserNameField>login_name</UserNameField>
+                    <MappingField>login_name</MappingField>
+                    <Properties>
+                        <Property Alias="LoginName" Field="login_name"/>
+                    </Properties>
+                </AccountLinking>
+            </Passport>
+            <Basic>
+                <UserInfoStorage Type="XmlFile">
+                    <User Name="root" Password="root1234"/>
+                </UserInfoStorage>
+            </Basic>
+            <Session>
+                <SessionManager Type="DBSessionManager">
+                    <Timeout>1000000</Timeout>
+                </SessionManager>
+            </Session>
+            <Internal/>
+        </Authentication>
+    </Property>
+    <Property Name="UpdateCenter">
+        <UpdateCenter>
+            <AppDeploy Password="" UserName="update"></AppDeploy>
+            <Components Password="" UserName="update"></Components>
+        </UpdateCenter>
+    </Property>
+    <Property Name="LoadBalanceSetup">
+        <LoadBalanceSetup>
+            <ServerManagerURL>http://127.0.0.1:8080/dsa5/manager</ServerManagerURL>
+        </LoadBalanceSetup>
+    </Property>
+    <Property Name="DSALog">
+        <Log Enabled="False">
+            <Property Name="LogProcess">True</Property>
+            <Property Name="LogUDS">True</Property>
+            <Property Name="LogDataOption">Always</Property>
+            <Property Name="CompressData">false</Property>
+            <Property Name="TargetConfig">
+                <Target Database="dsa_server_log" Type="NeighborDB"/>
+            </Property>
+        </Log>
+    </Property>
+    <Property Name="ThreadPoolCount">30</Property>
+    <Property Name="ConnectionPoolCount">10</Property>
+    <!--<Property Name="ScheduledServices">
+        <ScheduledService DriverClass="classloaderdeploy.ScheduledClassLoaderTest"/>
+    </Property>-->
+</ApplicationServer>

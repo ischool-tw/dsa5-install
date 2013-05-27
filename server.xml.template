@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationServer Type="SharedService" Name="cybertutor">
+	<Property Name="ServerConnection">
+		<ServerConnection>
+			<Driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</Driver>
+			<URL>jdbc:sqlserver://127.0.0.1;databaseName=dsa_server</URL>
+			<UserName>serveruser</UserName>
+			<Password>serveruser</Password>
+		</ServerConnection>
+	</Property>
+</ApplicationServer>
