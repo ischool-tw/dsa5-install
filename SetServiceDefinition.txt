@@ -1,0 +1,41 @@
+<Request>
+	<ApplicationName>shared</ApplicationName>
+	<ContractName>firstcontract</ContractName>
+	<Service Name="testservice">
+		<Property Name="Definition"> 
+			<Service>
+				<ServiceDescription>
+					<Handler ExecType="Util.DBHelper">
+						<ResourceName>DBHelperRule</ResourceName>
+						<Resources>
+							<Resource Name="ReturnSQL"/>
+							<Resource Name="DBHelperRule">
+								<Action>Select</Action>
+								<SQLTemplate>
+									<![CDATA[
+								select @@FieldList
+								from mydata 
+								]]></SQLTemplate>
+								<ResponseRecordElement>ListSeatNoResponse</ResponseRecordElement>
+								<FieldList Name="FieldList" Source="Field">
+									<Field Mandatory="true" Source="Content" Target="content"/>
+								</FieldList>
+								<Pagination Allow="false"/>
+							</Resource>
+						</Resources>
+					</Handler>
+					<Usage></Usage>
+				</ServiceDescription>
+				<ServiceHelp>
+					<Description/>
+					<RequestSDDL>
+					</RequestSDDL>
+					<ResponseSDDL/>
+					<Errors/>
+					<RelatedDocumentServices/>
+					<Samples/>
+				</ServiceHelp>
+			</Service>
+		</Property>
+	</Service>
+</Request>

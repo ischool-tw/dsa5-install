@@ -1,0 +1,10 @@
+<Request>
+	<Application Name="shared">
+		<Property Name="Config">
+			<Config>
+				<UDT Enabled="false"/>
+				<UDS Enabled="false"/>
+			</Config>
+		</Property>
+	</Application>
+</Request>

@@ -1,0 +1,7 @@
+<Request>
+	<Application Name="firstapp">
+		<Param Name="db_firstcontract_url">jdbc:sqlserver://127.0.0.1;databaseName=example_data</Param>
+		<Param Name="db_firstcontract_user">firstuser</Param>
+		<Param Name="db_firstcontract_pwd">firstuser</Param>
+	</Application>
+</Request>

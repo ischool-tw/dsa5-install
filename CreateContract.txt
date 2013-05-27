@@ -1,0 +1,38 @@
+﻿<Request>
+	<ApplicationName>shared</ApplicationName>
+	<Contract Name="firstcontract">
+		<Property Name="Config">
+			<AccessPoint>
+				<DefaultConnection>
+					<Driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</Driver>
+					<URL>_app_property_db_firstcontract_url</URL>
+					<UserName>_app_property_db_firstcontract_user</UserName>
+					<Password>_app_property_db_firstcontract_pwd</Password>
+				</DefaultConnection>
+				<Authentication>
+					<!-- 基本認證設定 -->
+					<Basic Enabled="True">
+						<PasswordHashProvider DriverClass="SHA1"/>
+						<UserInfoStorage Type="Database">
+							<DBSchema>
+								<!--參數名稱：@UserName，必需要有 UserName 與 Password 這兩個欄位，而且順序必需是 UserName 先。-->
+								<!--「Property_」開頭的欄位會加入到 IUesrInfo 的 Properties 中。-->
+								<GetUserDataQuery>
+									<![CDATA[
+								SELECT username as "UserName",password as "Password"
+								FROM login
+								WHERE lower(username) = lower(@UserName)
+									]]></GetUserDataQuery>
+								<!--參數名稱：@UserName，必需要有 RoleName 欄位。-->
+								<GetUserRolesQuery>
+									<![CDATA[
+									SELECT 'sysadmin' as "RoleName",@UserName
+									]]></GetUserRolesQuery>
+							</DBSchema>
+						</UserInfoStorage>
+					</Basic>
+				</Authentication>
+			</AccessPoint>
+		</Property>
+	</Contract>
+</Request>

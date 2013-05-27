@@ -1,0 +1,5 @@
+<Request>
+   <ApplicationName>shared</ApplicationName>
+   <ContractName>firstcontract</ContractName>
+   <ServiceName>testservice</ServiceName>
+</Request>
