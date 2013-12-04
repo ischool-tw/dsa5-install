@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationServer Type="SharedService" Name="ischool">
+	<Property Name="ServerConnection">
+		<ServerConnection>
+			<Driver>org.postgresql.Driver</Driver>
+			<URL>jdbc:postgresql://db_host_url/dsa_server</URL>
+			<UserName>db_user</UserName>
+			<Password>db_password</Password>
+		</ServerConnection>
+	</Property>
+</ApplicationServer>
